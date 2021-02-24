@@ -1,15 +1,10 @@
 import axios from "axios";
 import React from "react";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 export const IS_LOADING ="IS_LOADING";
 export const DATA_LOADING_SUCCESS="DATA_LOADING_SUCCESS";
 export const DATA_LOADING_FAILURE="DATA_LOADING_FAILURE";
-
-export const LOGIN_SUCCESS="LOGIN_SUCCESS";
-export const LOGIN_FAILURE="LOGIN_FAILURE";
-
-export const SIGNUP_SUCCESS="SIGNUP_SUCCESS"
-export const SIGNUP_FAILURE="SIGNUP_FAILURE";
 
 export const CLASS_REGISTRATION_SUCCESS="CLASS_REGISTRATION_SUCCESS";
 export const CLASS_REGISTRATION_FAILURE="CLASS_REGISTRATION_FAILURE";
@@ -38,6 +33,3 @@ export const loadClasses = (location) => (dispatch) =>{
     },1500)
 }
 
-const login = () =>{
-    
-}
