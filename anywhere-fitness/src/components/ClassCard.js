@@ -1,6 +1,17 @@
 import React from "react";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const ClassCard = ({api_data,type,duration,intensity,location,date,time,isFetching,error, ...props})=>{
+    const classRegistration = (e) =>{
+        e.preventDefault();
+        axiosWithAuth()
+        .post("",api_data)
+        .then((res) =>{
+            console.log(res, "class registration succesful")
+
+        })
+        .catch((err) =>console.log(err,"error registering for class"))
+    }
 
     return(
         <div className="class-card">
@@ -21,6 +32,7 @@ const ClassCard = ({api_data,type,duration,intensity,location,date,time,isFetchi
             <div className="class-time">
                 Time:<h3>{api_data.time}</h3>
             </div>
+            <button onClick={classRegistration}>Register</button>
         </div>
         
     );
