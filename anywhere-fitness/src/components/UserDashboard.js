@@ -1,5 +1,5 @@
 import React,{useEffect} from "react";
-import {loadClasses} from "../actions/index"
+import {fetchClasses} from "../actions/classActions"
 import ClassCard from "./ClassCard"
 const UserDashboard = () =>{
 
@@ -14,7 +14,7 @@ const UserDashboard = () =>{
     //         return <h2>Fetching classes</h2>
     //     }
         useEffect(() =>{
-            loadClasses()
+            fetchClasses()
         },[])
      
     return(

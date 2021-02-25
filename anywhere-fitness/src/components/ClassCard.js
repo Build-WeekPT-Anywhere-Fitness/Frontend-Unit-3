@@ -1,11 +1,12 @@
 import React from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import {connect} from "react-redux";
 
-const ClassCard = ({api_data,type,duration,intensity,location,date,time,isFetching,error, ...props})=>{
+const ClassCard = ({classes})=>{
     const classRegistration = (e) =>{
         e.preventDefault();
         axiosWithAuth()
-        .post("",api_data)
+        .post("",classes)
         .then((res) =>{
             console.log(res, "class registration succesful")
 
@@ -15,22 +16,22 @@ const ClassCard = ({api_data,type,duration,intensity,location,date,time,isFetchi
 
     return(
         <div className="class-card">
-            <h1>{api_data.type}</h1>
+            <h1>{classes.type}</h1>
 
             <div className="class-intensity">
-                Intesity:<h2>{api_data.intensity}</h2>
+                Intesity:<h2>{classes.intensity}</h2>
             </div>
             <div className="class-duration">
-                Duration:<h2>{api_data.duration}</h2>
+                Duration:<h2>{classes.duration}</h2>
             </div>
             <div className="class-location">
-                Location:<h3>{api_data.location}</h3>
+                Location:<h3>{classes.location}</h3>
             </div>
             <div className="class-date">
-                Date:<h3>{api_data.date}</h3>
+                Date:<h3>{classes.date}</h3>
             </div>
             <div className="class-time">
-                Time:<h3>{api_data.time}</h3>
+                Time:<h3>{classes.time}</h3>
             </div>
             <button onClick={classRegistration}>Register</button>
         </div>
@@ -40,13 +41,8 @@ const ClassCard = ({api_data,type,duration,intensity,location,date,time,isFetchi
 
 const  mapStateToProps = (state) => {
     return {
-        api_data:state.api_data,
-        type:state.type,
-        duration:state.duration,
-        intensity:state.intensity,
-        location:state.location,
-        date:state.date,
-        time:status.time,
-    }
+        classes:state.classes,
+        
 }
-export default connect (mapStateToProps())(ClassCard);
+}
+export default connect(mapStateToProps,null)(ClassCard)

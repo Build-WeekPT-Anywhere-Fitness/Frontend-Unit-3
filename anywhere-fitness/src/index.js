@@ -4,13 +4,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import reducer from "./reducer/index";
-import thunk from "redux-thunk";
-import logger from "redux-logger";
-import {createStore, appleMiddleware} from "redux";
-import {Provider} from "react-redux";
 
-const store = createStore(reducer,applyMiddleware(thunk,logger))
+import {createStore, applyMiddleware,combineReducers} from "redux";
+import {Provider} from "react-redux";
+import thunk from "redux-thunk"
+
+
+
+import userReducer from './redux/userReducer'
+import classReducer from './redux/classReducer'
+const rootReducer = combineReducers({ userReducer, classReducer })
+
+const store = createStore(rootReducer, applyMiddleware(thunk))
 ReactDOM.render(
   <React.StrictMode>
     <Provider store ={store}>
