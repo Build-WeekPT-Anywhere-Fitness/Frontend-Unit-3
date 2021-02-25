@@ -9,7 +9,10 @@ const FormSchema = yup.object().shape({
   password: yup
   .string()
   .required('Please enter a password')
-  .min(2, 'Must be longer than two characters')
+  .matches(
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+    'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character'
+  )
 })
 
 export default FormSchema
