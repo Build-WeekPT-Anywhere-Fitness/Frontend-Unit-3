@@ -6,14 +6,12 @@ error: null,
 isLoading: false
 }
 
-const classReducer = (state = initialState, actions) => {
-  Switch(actions.type) {
+const classReducer = (state = initialState, action) => {
+  Switch(action.type) {
     case CREATE_CLASS:
-    // Will !loading, return new class arr
-      return state;
+    return {...state, isLoading: false, classes: [action.payload]}
     case: CLASS_FAIL:
-    // Set ERR to state
-    return state;
+    return {...state, isLoading:false, error: action.payload.message}
     case DELETE_CLASS:
     // Delete Class by ID, return new Class ar, !isLoading?
       return state;

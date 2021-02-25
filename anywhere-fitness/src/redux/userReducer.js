@@ -1,4 +1,4 @@
-import { CREATE_CLASS } from '../actions/types'
+
 import {
     CREATE_USER,
     USER_FAIL,
@@ -7,7 +7,7 @@ import {
     LOAD_USER
 } from '../actions/userActions'
 
-//isAuth === is authenticated by server
+
 const initialState = {
 username: '',
 email: '',
@@ -19,23 +19,18 @@ isLoading: false
 error: null
 }
 
-const userReducer = (state = initialState, actions) => {
-Switch(actions.type) {
+const userReducer = (state = initialState, action) => {
+Switch(action.type) {
   case CREATE_USER:
-    //will set token & !load, !auth
-    return state;
+    return {...state, action.payload, isLoading: false };
   case: USER_FAIL:
-  // will set err & clear load
-  return state;
+    return {...state, error: action.payload.message, isLoading: false};
   case LOGIN_USER:
-    // will !load, !auth,
-    return state;
+    return {...state, action.payload, isLoading: false };
   case LOGOUT_USER:
-    // Will revert to initialState
-    return state
+    return {initialState};
   case LOAD_USER:
-    // Will isLoading: true
-    return state
+    return {...state, isLoading:true};
   default:
     return state;
 }
