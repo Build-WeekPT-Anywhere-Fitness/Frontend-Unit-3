@@ -1,4 +1,4 @@
-import {CREATE_CLASS,CLASS_FAIL, FETCH_CLASS, FETCH_CLASSES, DELETE_CLASS, UPDATE_CLASS} from'../actions/types
+import {LOAD_CLASS,CLASS_FAIL,FETCH_CLASSES, } from'../actions/types
 
 initialState = {
 classes: [],
@@ -8,22 +8,14 @@ isLoading: false
 
 const classReducer = (state = initialState, action) => {
   Switch(action.type) {
-    case CREATE_CLASS:
-    return {...state, isLoading: false, classes: [action.payload]}
+    case FETCH_CLASSES:
+      return {...state, isLoading:false, classes: [action.payload]}
     case: CLASS_FAIL:
-    return {...state, isLoading:false, error: action.payload.message}
-    case DELETE_CLASS:
-    // Delete Class by ID, return new Class ar, !isLoading?
-      return state;
-    case UPDATE_CLASS:
-   // Return new Class info by ID , return class arr, !isLoading
-      return state
+      return {...state, isLoading:false, error: action.payload.message}
     case LOAD_CLASS:
-     // Will {isLoading: true}
-      return state
+      return {...state, isLoading: true}
     default:
       return state;
   }
 }
-
 export default classReducer
