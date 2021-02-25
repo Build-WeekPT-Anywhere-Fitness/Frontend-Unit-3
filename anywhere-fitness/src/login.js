@@ -1,8 +1,32 @@
 import React from 'react';
 
-function App() {
+
+function Login() {
   return (
-    null
+    <form className = 'login'>
+      <label> Username: 
+        <input 
+          type = 'text'
+          name = 'username'
+        /> 
+      </label>
+
+      <label> Password: 
+        <input 
+          input = 'text'
+          name = 'password'
+        />
+      </label>
+
+      <div className = 'instuctorToggle'>
+        <label> Instructor
+          <input 
+            type = 'checkbox'
+            name = ' instructorBox'
+          />
+        </label>
+      </div>
+    </form>
   )}
 
-export default App;
+export default Login;
