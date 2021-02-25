@@ -105,28 +105,28 @@ const SignUpForm = () => {
       <Form onSubmit={formSubmit}>
         <h2 className="sign-up">Sign Up Today!</h2>
         <div>
-          <Label htmlFor="firstName">
+          <Label htmlFor="firstname">
             First Name
             <Input
               type="text"
               name="firstname"
-              placeholder="First Name"
               value={formState.firstname}
               onChange={inputChange}
             />
+             {errors.firstname.length > 0 ? <p>{errors.name}</p> : null}
           </Label>
         </div>
 
         <div>
-          <Label htmlFor="lastName">
+          <Label htmlFor="lastname">
             Last Name
             <Input
               type="text"
               name="lastname"
-              placeholder="Last Name"
               value={formState.lastname}
               onChange={inputChange}
             />
+             {errors.lastname.length > 0 ? <p>{errors.name}</p> : null}
           </Label>
         </div>
         <div>
@@ -135,10 +135,10 @@ const SignUpForm = () => {
             <Input
               type="text"
               name="email"
-              placeholder="email"
               value={formState.email}
               onChange={inputChange}
             />
+            {errors.email.length > 0 ? <p>{errors.email}</p> : null}
           </Label>
         </div>
         <div>
@@ -147,10 +147,10 @@ const SignUpForm = () => {
             <Input
               type="text"
               name="username"
-              placeholder="Username"
               value={formState.username}
               onChange={inputChange}
             />
+            {errors.username.length > 0 ? <p>{errors.username}</p> : null}
           </Label>
         </div>
 
@@ -160,10 +160,10 @@ const SignUpForm = () => {
             <Input
               type="password"
               name="password"
-              placeholder="password"
               value={formState.password}
               onChange={inputChange}
             />
+            {errors.password.length > 0 ? <p>{errors.password}</p> : null}
           </Label>
         </div>
 
@@ -176,10 +176,11 @@ const SignUpForm = () => {
               value={formState.role}
               onChange={inputChange}
             />
+
           </Label>
         </div>
         <pre>{JSON.stringify(users, null, 2)}</pre>
-        <button disabled={buttonDisabled} type="submit">
+        <button disabled={buttonDisabled} type="submit" color="warning">
           Sign Up!
         </button>
       </Form>
