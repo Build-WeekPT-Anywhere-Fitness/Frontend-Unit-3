@@ -9,39 +9,60 @@ import {
     LOAD_CLASS
 } from './types'
 
-const API = ''
+//TODO ADDRESS API_URL!!
 
+const API_URL = ''
 
-export const createClass = (lesson) => {
-return dispatch() {
-
+//TODO ADDRESS ENDPOINT AND WHAT TO SEND BACK!!
+export const createClass = (lesson) => (dispatch) => {
+    dispatch({ type: LOAD_CLASS })
+    axios
+        .post(API_URL, lesson)
+        .then((res) => {
+            dispatch({ type: CREATE_CLASS, payload: res.data })
+        })
+        .catch((err) => dispatch({ type: CLASS_FAIL, payload: err }))
 }
-//CREATE CLASS => FETCH CLASSES => LOAD CLASS => CLEAR LOAD
+//TODO ADDRESS ENDPOINT AND WHAT TO SEND BACK!!
+
+export const fetchClasses = (lessonID) => (dispatch) => {
+    dispatch({ type: LOAD_CLASS })
+    axios
+        .get(`${API_URL}/ENDPOINT/${lessonID}`)
+        .then((res) => {
+            dispatch({ type: FETCH_CLASSES, payload: res.data })
+        })
+        .catch((err) => dispatch({ type: CLASS_FAIL, payload: err }))
 }
+//TODO ADDRESS ENDPOINT AND WHAT TO SEND BACK!!
 
-export const fetchClasses = (lesson) => {
-  return dispatch() {
-
-  }
-  // FETCH_CLASSES => LOAD_CLASSES => CLEAR LOAD
+export const fetchClassByID = (lessonID) => (dispatch) => {
+    dispatch({ type: LOAD_CLASS })
+    axios
+        .get(`${API_URL}/ENDPOINT/${lessonID}`)
+        .then((res) => {
+            dispatch({ type: FETCH_CLASS, payload: res.data })
+        })
+        .catch((err) => dispatch({ type: CLASS_FAIL, payload: err }))
 }
-export const fetchClassByID = (lesson) => {
-  return dispatch() {
+//TODO ADDRESS ENDPOINT AND WHAT TO SEND BACK!!
 
-  }
-  //Fetch_CLASS by ID => LOAD_CLASS => CLEAR LOAD
+export const updateClass = (lesson, data) => (dispatch) => {
+    dispatch({ type: LOAD_CLASS })
+    axios
+        .put(`${API_URL}/ENDPOINT/${lessonID}`, data)
+        .then((res) => {
+            dispatch({ type: UPDATE_CLASS, payload: res.data })
+        })
+        .catch((err) => dispatch({ type: CLASS_FAIL, payload: err }))
 }
-
-export const updateClass = (lesson) => {
-  return dispatch() {
-
-  }
-  //FetchClassByID => Load => Clear Load => Update Class => Fetch Classes & Classbyid => load => Clear Load
-}
-
-export const deleteClass = (lesson) => {
-  return dispatch() {
-
-  }
-  //DELETE_CLASS => FETCH_CLASSES => LOAD => CLEAR LOAD
+//TODO ADDRESS ENDPOINT AND WHAT TO SEND BACK!!
+export const deleteClass = (lessonID) => (dispatch) => {
+    dispatch({ type: LOAD_CLASS })
+    axios
+        .delete(`${API_URL}/ENDPOINT/${lessonID}`)
+        .then((res) => {
+            dispatch({ type: DELETE_CLASS, payload: res.data })
+        })
+        .catch((err) => dispatch({ type: CLASS_FAIL, payload: err }))
 }
