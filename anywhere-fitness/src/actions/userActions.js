@@ -1,31 +1,42 @@
 import axios from 'axios'
 import {
     CREATE_USER,
-    FETCH_USER,
+    USER_FAIL,
     LOGIN_USER,
     LOGOUT_USER,
     LOAD_USER
 } from './types'
+// NEED API_URL & ENDPOINTS!
+const API_URL = ''
 
-const API = ''
-
-export const createUser = (user) =>  {
-  return dispatch() {
-
-  }
-  //CREATE_USER => LOAD_USER => Clear Load =>  LOGIN_USER
+//TODO ADDRESS ENDPOINT AND WHAT TO SEND BACK!
+export const createUser = (user) => (dispatch) => {
+    dispatch({ type: LOAD_USER })
+    axios
+        .post(API_URL, { user })
+        .then((res) => {
+            dispatch({ type: CREATE_USER, payload: res.data })
+        })
+        .catch((err) => dispatch({ type: USER_FAIL, payload: err }))
 }
 
-export const loginUser = (user) => {
-  return dispatch() {
-
-  }
-  // FETCH_USER => LOAD_USER => CLEAR LOAD =>  LOGIN_USER
+//TODO ADDRESS ENDPOINT AND WHAT TO SEND BACK!
+export const loginUser = (user) => (dispatch) => {
+    dispatch({ type: LOAD_USER })
+    axios
+        .post(API_URL, { user })
+        .then((res) => {
+            dispatch({ type: LOGIN_USER, payload: res.data })
+        })
+        .catch((err) => dispatch({ type: USER_FAIL, payload: err }))
 }
 
-export const logoutUser = (user) => {
-  return dispatch() {
-
-  }
-  // LOGOUT_USER => initial State, Cleared Token on CLIENT & SERVER
+//TODO ADDRESS ENDPOINT AND WHAT TO SEND BACK!
+export const logoutUser = (user) => (dispatch) => {
+    axios
+        .post(API_URL, { USER })
+        .then((res) => {
+            dispatch({ type: LOGOUT_USER, payload: user })
+        })
+        .catch((err) => dispatch({ type: USER_FAIL, payload: err }))
 }

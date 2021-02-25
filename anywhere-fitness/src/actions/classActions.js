@@ -1,6 +1,7 @@
 import axios from 'axios'
 import {
     CREATE_CLASS,
+    CLASS_FAIL,
     FETCH_CLASSES,
     FETCH_CLASS,
     UPDATE_CLASS,
