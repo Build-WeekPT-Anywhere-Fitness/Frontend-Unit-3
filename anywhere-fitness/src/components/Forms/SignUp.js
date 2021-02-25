@@ -23,7 +23,7 @@ const SignUpForm = () => {
     instructor: "",
   });
   //BUTTON
-  const [buttonDisabled, setButtonDisabled] = useState();
+  const [buttonDisabled, setButtonDisabled] = useState(true);
 
   const [users, setUsers] = useState();
 
@@ -106,10 +106,10 @@ const SignUpForm = () => {
         <h2 className="sign-up">Sign Up Today!</h2>
         <div>
           <Label htmlFor="firstname">
-            First Name
             <Input
               type="text"
               name="firstname"
+              placeholder="First Name"
               value={formState.firstname}
               onChange={inputChange}
             />
@@ -119,34 +119,36 @@ const SignUpForm = () => {
 
         <div>
           <Label htmlFor="lastname">
-            Last Name
             <Input
               type="text"
               name="lastname"
+              placeholder="Last Name"
               value={formState.lastname}
               onChange={inputChange}
             />
              {errors.lastname.length > 0 ? <p>{errors.name}</p> : null}
           </Label>
         </div>
+
         <div>
           <Label htmlFor="email">
-            Email
             <Input
               type="text"
               name="email"
+              placeholder="Email"
               value={formState.email}
               onChange={inputChange}
             />
             {errors.email.length > 0 ? <p>{errors.email}</p> : null}
           </Label>
         </div>
+
         <div>
           <Label htmlFor="username">
-            Username
             <Input
               type="text"
               name="username"
+              placeholder="Username"
               value={formState.username}
               onChange={inputChange}
             />
@@ -156,10 +158,10 @@ const SignUpForm = () => {
 
         <div>
           <Label htmlFor="password">
-            Password
             <Input
               type="password"
               name="password"
+              placeholder="Password"
               value={formState.password}
               onChange={inputChange}
             />
@@ -173,16 +175,19 @@ const SignUpForm = () => {
             <Input
               type="checkbox"
               name="instructor"
-              value={formState.role}
+              value={formState.instructor}
               onChange={inputChange}
             />
 
           </Label>
         </div>
-        <pre>{JSON.stringify(users, null, 2)}</pre>
-        <button disabled={buttonDisabled} type="submit" color="warning">
+        
+        {JSON.stringify(users, null, 2)}
+        
+        <button disabled={buttonDisabled} type="submit">
           Sign Up!
         </button>
+
       </Form>
     </Container>
   );
