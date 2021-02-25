@@ -13,6 +13,7 @@ username: '',
 email: '',
 password: '',
 token: '',
+isInstructor: false,
 isAuth: false,
 isLoading: false
 error: null
@@ -39,3 +40,5 @@ Switch(actions.type) {
     return state;
 }
 }
+
+export default userReducer
