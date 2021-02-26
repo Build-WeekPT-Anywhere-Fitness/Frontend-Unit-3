@@ -1,32 +1,33 @@
 import React from 'react';
+import StyleLog from './styling';
 
 
 function Login() {
   return (
-    <form className = 'login'>
-      <label> Username: 
-        <input 
+    <Form className = 'login'>
+      <Label> Username: 
+        <Input 
           type = 'text'
           name = 'username'
         /> 
-      </label>
+      </Label>
 
-      <label> Password: 
-        <input 
+      <Label> Password: 
+        <Input 
           input = 'text'
           name = 'password'
         />
-      </label>
+      </Label>
 
       <div className = 'instuctorToggle'>
-        <label> Instructor
-          <input 
+        <Label> Instructor
+          <Input 
             type = 'checkbox'
             name = ' instructorBox'
           />
-        </label>
+        </Label>
       </div>
-    </form>
+    </Form>
   )}
 
 export default Login;
