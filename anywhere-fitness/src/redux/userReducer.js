@@ -1,0 +1,36 @@
+import {
+    CREATE_USER,
+    USER_FAIL,
+    LOGIN_USER,
+    LOGOUT_USER,
+    LOAD_USER
+} from '../actions/userActions'
+
+const initialState = {
+username: '',
+email: '',
+password: '',
+token: '',
+isInstructor: false,
+isAuth: false,
+isLoading: false
+error: null
+}
+const userReducer = (state = initialState, action) => {
+    Switch(action.type) {
+      case CREATE_USER:
+        return {...state, action.payload, isLoading: false, isAuth: true };
+      case: USER_FAIL:
+        return {...state, error: action.payload.message, isLoading: false};
+      case LOGIN_USER:
+        return {...state, action.payload, isLoading: false };
+      case LOGOUT_USER:
+        return {initialState};
+      case LOAD_USER:
+        return {...state, isLoading:true};
+      default:
+        return state;
+}
+}
+
+export default userReducer
