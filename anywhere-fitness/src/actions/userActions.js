@@ -7,7 +7,7 @@ import {
     LOAD_USER
 } from './types'
 // NEED API_URL & ENDPOINTS!
-const API_URL = 'https://lambda-fitness.herokuapp.com/api/users/'
+const API_URL = 'https://anytime-fitness.herokuapp.com/api/auth'
 
 //TODO ADDRESS ENDPOINT AND WHAT TO SEND BACK!
 export const createUser = (user) => (dispatch) => {
@@ -35,7 +35,7 @@ export const loginUser = (user) => (dispatch) => {
 export const logoutUser = (user) => (dispatch) => {
     dispatch({ type: LOAD_USER })
     axios
-        .post(API_URL, { USER })
+        .post(API_URL, { user })
         .then((res) => {
             dispatch({ type: LOGOUT_USER })
         })
