@@ -178,7 +178,7 @@ const SignUpForm = () => {
             <Input
               type="checkbox"
               name="role"
-              value={formState.instructor}
+              value={formState.role}
               onChange={inputChange}
             />
           </Label>
