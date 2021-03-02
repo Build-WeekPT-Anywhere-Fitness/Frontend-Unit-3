@@ -11,7 +11,9 @@ const SignUpForm = () => {
     email: "",
     username: "",
     password: "",
+
     role: "",
+
   });
   //ERRORS
   const [errors, setErrors] = useState({
@@ -20,10 +22,12 @@ const SignUpForm = () => {
     email: "",
     username: "",
     password: "",
+
     role: "",
   });
   //BUTTON
   const [buttonDisabled, setButtonDisabled] = useState();
+
 
   const [users, setUsers] = useState();
 
@@ -41,7 +45,9 @@ const SignUpForm = () => {
       .string()
       .min(8, "Must be a minimum of 8 characters")
       .required("Must include a password"),
+
     role: yup.boolean().required(),
+
   });
 
   //USEEFFECT FOR FORMSCHEMA
@@ -84,10 +90,12 @@ const SignUpForm = () => {
   const formSubmit = (event) => {
     event.preventDefault();
     axios
+
       .post(
         "https://anytime-fitness.herokuapp.com/api/auth/register",
         formState
       )
+
       .then((response) => {
         setUsers(response.data);
         console.log(response);
@@ -97,7 +105,9 @@ const SignUpForm = () => {
           email: "",
           username: "",
           password: "",
+
           role: "",
+
         });
       })
       .catch((error) => console.log(error.response));
@@ -116,7 +126,9 @@ const SignUpForm = () => {
               value={formState.firstname}
               onChange={inputChange}
             />
+
             {errors.firstname.length > 0 ? <p>{errors.firstname}</p> : null}
+
           </Label>
         </div>
 
@@ -129,7 +141,9 @@ const SignUpForm = () => {
               value={formState.lastname}
               onChange={inputChange}
             />
+
             {errors.lastname.length > 0 ? <p>{errors.lastname}</p> : null}
+
           </Label>
         </div>
 
@@ -173,6 +187,7 @@ const SignUpForm = () => {
         </div>
 
         <div>
+
           <Label htmlFor="role">
             Instructor
             <Input
@@ -189,6 +204,7 @@ const SignUpForm = () => {
         <button disabled={buttonDisabled} type="submit">
           Sign Up!
         </button>
+
       </Form>
     </Container>
   );
