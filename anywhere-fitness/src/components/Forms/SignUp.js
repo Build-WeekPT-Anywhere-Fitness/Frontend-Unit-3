@@ -11,7 +11,7 @@ const SignUpForm = () => {
     email: "",
     username: "",
     password: "",
-    instructor: "",
+    role: "",
   });
   //ERRORS
   const [errors, setErrors] = useState({
@@ -20,10 +20,10 @@ const SignUpForm = () => {
     email: "",
     username: "",
     password: "",
-    instructor: "",
+    role: "",
   });
   //BUTTON
-  const [buttonDisabled, setButtonDisabled] = useState(true);
+  const [buttonDisabled, setButtonDisabled] = useState();
 
   const [users, setUsers] = useState();
 
@@ -41,7 +41,7 @@ const SignUpForm = () => {
       .string()
       .min(8, "Must be a minimum of 8 characters")
       .required("Must include a password"),
-    instructor: yup.boolean().optional(),
+    role: yup.boolean().required(),
   });
 
   //USEEFFECT FOR FORMSCHEMA
@@ -84,7 +84,10 @@ const SignUpForm = () => {
   const formSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("https://reqres.in/api/users", formState)
+      .post(
+        "https://anytime-fitness.herokuapp.com/api/auth/register",
+        formState
+      )
       .then((response) => {
         setUsers(response.data);
         console.log(response);
@@ -94,7 +97,7 @@ const SignUpForm = () => {
           email: "",
           username: "",
           password: "",
-          instructor: "",
+          role: "",
         });
       })
       .catch((error) => console.log(error.response));
@@ -113,7 +116,7 @@ const SignUpForm = () => {
               value={formState.firstname}
               onChange={inputChange}
             />
-             {errors.firstname.length > 0 ? <p>{errors.name}</p> : null}
+            {errors.firstname.length > 0 ? <p>{errors.firstname}</p> : null}
           </Label>
         </div>
 
@@ -126,7 +129,7 @@ const SignUpForm = () => {
               value={formState.lastname}
               onChange={inputChange}
             />
-             {errors.lastname.length > 0 ? <p>{errors.name}</p> : null}
+            {errors.lastname.length > 0 ? <p>{errors.lastname}</p> : null}
           </Label>
         </div>
 
@@ -170,24 +173,22 @@ const SignUpForm = () => {
         </div>
 
         <div>
-          <Label htmlFor="instructor">
+          <Label htmlFor="role">
             Instructor
             <Input
               type="checkbox"
-              name="instructor"
+              name="role"
               value={formState.instructor}
               onChange={inputChange}
             />
-
           </Label>
         </div>
-        
+
         {JSON.stringify(users, null, 2)}
-        
+
         <button disabled={buttonDisabled} type="submit">
           Sign Up!
         </button>
-
       </Form>
     </Container>
   );
