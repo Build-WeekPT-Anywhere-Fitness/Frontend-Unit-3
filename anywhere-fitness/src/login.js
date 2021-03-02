@@ -18,7 +18,7 @@ function Login() {
   const [infoState, setInfoState] = useState({StateInfo});
   const [errors, setErrors] = useState({ErrorInfo});
   const [disabledButton, setDisabledButton] = useState();
-
+  const [user, setUser] = useState();
 
 
   useEffect(() => {
@@ -27,6 +27,7 @@ function Login() {
 
       })
   })
+  
   return (
     <Form className = 'login'>
       <Label> Username: 
