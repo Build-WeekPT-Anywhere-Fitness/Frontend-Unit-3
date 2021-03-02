@@ -1,8 +1,32 @@
-import React from 'react';
-import StyleLog from './styling';
+import React, {useState, useEffect} from 'react';
+import FormSchema from './validation';
+import Axios from 'axios';
+import {Form, Label, Input} from './styling'
+function StateInfo() {
+  username: ''
+  password: ''
+  instructor: ''
+};
 
+function ErrorInfo() {
+  username: ''
+  password: ''
+  instructor: ''
+}
 
 function Login() {
+  const [infoState, setInfoState] = useState({StateInfo});
+  const [errors, setErrors] = useState({ErrorInfo});
+  const [disabledButton, setDisabledButton] = useState();
+
+
+
+  useEffect(() => {
+    FormSchema.isValid(infoState)
+      .then(valid => {
+
+      })
+  })
   return (
     <Form className = 'login'>
       <Label> Username: 
