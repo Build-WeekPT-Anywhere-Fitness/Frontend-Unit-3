@@ -1,5 +1,5 @@
 import './App.css';
-import SignUpForm from './components/Forms/SignUp';
+import SignUpForm from './Forms/SignUpForm';
 function App() {
   return (
     <div className="App">
