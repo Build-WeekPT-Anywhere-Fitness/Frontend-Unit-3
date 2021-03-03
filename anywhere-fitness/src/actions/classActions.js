@@ -1,16 +1,11 @@
-import axios from 'axios'
+import {axiosWithAuth} from '../utils/axiosWithAuth'
 import { CLASS_FAIL, FETCH_CLASSES, FETCH_CLASS, LOAD_CLASS } from './types'
 
-const API_URL = 'https://lambda-fitness.herokuapp.com/api/classes'
 
 export const createClass = (lesson) => (dispatch) => {
     dispatch({ type: LOAD_CLASS })
-    axios
-        .post(API_URL, lesson, {
-            headers: {
-                Authorization: token
-            }
-        })
+    axiosWithAuth
+        .post(``, lesson)
         .then((res) => {
             fetchClasses()
         })
@@ -18,12 +13,8 @@ export const createClass = (lesson) => (dispatch) => {
 }
 export const fetchClasses = () => (dispatch) => {
     dispatch({ type: LOAD_CLASS })
-    axios
-        .get(`${API_URL}/ENDPOINT/`, {
-            headers: {
-                Authorization: token
-            }
-        })
+    axiosWithAuth
+        .get(``)
         .then((res) => {
             dispatch({ type: FETCH_CLASSES, payload: res.data })
         })
@@ -31,12 +22,8 @@ export const fetchClasses = () => (dispatch) => {
 }
 export const updateClass = (lesson, data) => (dispatch) => {
     dispatch({ type: LOAD_CLASS })
-    axios
-        .put(`${API_URL}/ENDPOINT/${lessonID}`, data, {
-            headers: {
-                Authorization: token
-            }
-        })
+    axiosWithAuth
+        .put(``, data)
         .then((res) => {
             fetchClasses()
         })
@@ -44,12 +31,8 @@ export const updateClass = (lesson, data) => (dispatch) => {
 }
 export const deleteClass = (lessonID) => (dispatch) => {
     dispatch({ type: LOAD_CLASS })
-    axios
-        .delete(`${API_URL}/ENDPOINT/${lessonID}`, {
-            headers: {
-                Authorization: token
-            }
-        })
+    axiosWithAuth
+        .delete(``)
         .then((res) => {
             fetchClasses()
         })
