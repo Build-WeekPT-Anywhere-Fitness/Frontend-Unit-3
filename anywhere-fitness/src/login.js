@@ -98,6 +98,8 @@ function Login() {
         </Label>
       </div>
       <button disabled = {disabledButton} type = 'submit'>Log In</button>
+      <div>{errors.username}</div>
+      <div>{errors.password}</div>
     </Form>
   )}
 
