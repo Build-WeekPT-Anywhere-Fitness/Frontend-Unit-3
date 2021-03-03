@@ -1,14 +1,15 @@
-import React from 'react'
-const StyledLabel = styled.label`
+import styled from 'styled-components';
+
+const Label = styled.label`
+    
+`;
+
+const Input = styled.input`
 
 `;
 
-const StyledInput = styled.input`
+const Form = styled.form`
 
 `;
 
-const StyledForm = styled.form`
-
-`;
-
-export default StyleLog
+export {Label, Input, Form}

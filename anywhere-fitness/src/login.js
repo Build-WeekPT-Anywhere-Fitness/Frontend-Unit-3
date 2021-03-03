@@ -1,18 +1,18 @@
 import React, {useState, useEffect} from 'react';
 import FormSchema from './validation';
+import {Form, Input, Label} from './styling';
 import Axios from 'axios';
-import {Form, Label, Input} from './styling'
-import { ValidationError } from 'yup';
-import axios from 'axios';
-function StateInfo() {
-  username: ''
-  password: ''
+import * as yup from 'yup';
+
+const StateInfo = {
+  username: '',
+  password: '',
   instructor: ''
 };
 
-function ErrorInfo() {
-  username: ''
-  password: ''
+const ErrorInfo = {
+  username: '',
+  password: '',
   instructor: ''
 }
 
@@ -54,7 +54,7 @@ function Login() {
 
   const formSubmit = e => {
     e.preventDefault();
-    axios.post("https://anytime-fitness.herokuapp.com/api/auth/login", infoState)
+    Axios.post("https://anytime-fitness.herokuapp.com/api/auth/login", infoState)
     .then(response => {
       setUser(response.data);
       setInfoState({
@@ -68,11 +68,13 @@ function Login() {
   }
 
   return (
-    <Form className = 'login'>
+    <Form className = 'login' onSubmit ={formSubmit}>
       <Label> Username: 
         <Input 
           type = 'text'
           name = 'username'
+          value = {infoState.username}
+          onChange = {inputChange}
         /> 
       </Label>
 
@@ -80,6 +82,8 @@ function Login() {
         <Input 
           input = 'text'
           name = 'password'
+          value = {infoState.password}
+          onChange = {inputChange}
         />
       </Label>
 
@@ -88,9 +92,12 @@ function Login() {
           <Input 
             type = 'checkbox'
             name = ' instructorBox'
+            value = {infoState.instructor}
+            onChange = {inputChange}
           />
         </Label>
       </div>
+      <button disabled = {disabledButton} type = 'submit'>Log In</button>
     </Form>
   )}
 
