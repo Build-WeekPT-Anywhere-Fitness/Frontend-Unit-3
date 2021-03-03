@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import './App.css';
 import InstructorDashboard from "./components/InstructorDashboard";
@@ -26,6 +27,15 @@ function App() {
 
     </Router>
    
+=======
+import './App.css';
+import SignUpForm from './components/Forms/SignUp';
+function App() {
+  return (
+    <div className="App">
+      <SignUpForm />
+    </div>
+>>>>>>> origin/main
   );
 }
 
