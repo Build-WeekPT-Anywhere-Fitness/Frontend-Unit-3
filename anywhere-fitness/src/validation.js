@@ -12,7 +12,10 @@ const FormSchema = yup.object().shape({
   .matches(
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
     'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character'
-  )
+  ),
+
+  instructorBox: yup
+  .boolean()
 })
 
 export default FormSchema

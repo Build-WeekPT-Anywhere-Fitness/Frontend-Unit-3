@@ -91,7 +91,7 @@ function Login() {
         <Label> Instructor
           <Input 
             type = 'checkbox'
-            name = ' instructorBox'
+            name = 'instructorBox'
             value = {infoState.instructor}
             onChange = {inputChange}
           />
