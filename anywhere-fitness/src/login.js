@@ -3,26 +3,26 @@ import FormSchema from './validation';
 import {Form, Input, Label} from './styling';
 import Axios from 'axios';
 import * as yup from 'yup';
-
+//Initial State 
 const StateInfo = {
   username: '',
   password: '',
   instructor: ''
 };
-
+//Initial Error State
 const ErrorInfo = {
   username: '',
   password: '',
   instructor: ''
 }
-
+//State
 function Login() {
   const [infoState, setInfoState] = useState({StateInfo});
   const [errors, setErrors] = useState({ErrorInfo});
   const [disabledButton, setDisabledButton] = useState();
   const [user, setUser] = useState();
 
-
+  //useEffect for Validation, and submit button
   useEffect(() => {
     FormSchema.isValid(infoState)
       .then(valid => {
@@ -39,7 +39,7 @@ function Login() {
     validation(e);
     setInfoState(newData);
   }
-
+  //Yup Validation
   const validation = e => {
     yup
       .reach(FormSchema, e.target.name)
@@ -51,7 +51,7 @@ function Login() {
         setErrors({...errors, [e.target.name]: error.errors[0]});
       })
   }
-
+  //Submit button POST request
   const formSubmit = e => {
     e.preventDefault();
     Axios.post("https://anytime-fitness.herokuapp.com/api/auth/login", infoState)
@@ -66,7 +66,7 @@ function Login() {
       console.log(error.response)
     })
   }
-
+  //Form layout
   return (
     <Form className = 'login' onSubmit ={formSubmit}>
       <Label> Username: 
