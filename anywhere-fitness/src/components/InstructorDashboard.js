@@ -10,8 +10,9 @@ const InstructorDashboard = () =>{
      
     return(
         <div className="class-card">
-            <ClassCard />
+           
           <CreateClass />
+          <ClassCard />
         </div>
     )
 }

@@ -7,6 +7,6 @@ export const axiosWithAuth = () =>{
         header:{
             Authorization:token
         },
-        baseURL:"https://lambda-fitness.herokuapp.com/"
+        baseURL:"https://anytime-fitness.herokuapp.com/api/"
     })
 }

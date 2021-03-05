@@ -8,10 +8,10 @@ const initialState = ({
     password:"",
 })
 
-
 const Login = () =>{
     const [user, setUser] = useState(initialState);
 
+    // const history = useHistory();
 
     const handleChange = (e) =>{
         setUser({
@@ -28,6 +28,7 @@ const Login = () =>{
             username:"",
             password:"",
         })
+        // history.push('/userdashboard')
     }
     
 

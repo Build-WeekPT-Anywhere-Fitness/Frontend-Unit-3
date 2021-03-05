@@ -1,4 +1,4 @@
-import axios from 'axios'
+import {axiosWithAuth} from '../utils/axiosWithAuth'
 import {
     CREATE_USER,
     USER_FAIL,
@@ -7,13 +7,12 @@ import {
     LOAD_USER
 } from './types'
 // NEED API_URL & ENDPOINTS!
-const API_URL = 'https://anytime-fitness.herokuapp.com/api/auth'
 
 //TODO ADDRESS ENDPOINT AND WHAT TO SEND BACK!
 export const createUser = (user) => (dispatch) => {
     dispatch({ type: LOAD_USER })
-    axios
-        .post(API_URL + '/register', user)
+    axiosWithAuth()
+        .post('auth/register', user)
         .then((res) => {
             dispatch({ type: CREATE_USER, payload: res.data })
         })
@@ -23,8 +22,8 @@ export const createUser = (user) => (dispatch) => {
 //TODO ADDRESS ENDPOINT AND WHAT TO SEND BACK!
 export const loginUser = (user) => (dispatch) => {
     dispatch({ type: LOAD_USER })
-    axios
-        .post(API_URL + '/login', user)
+    axiosWithAuth()
+        .post('auth/login	', user)
         .then((res) => {
             dispatch({ type: LOGIN_USER, payload: res.data })
         })
@@ -34,8 +33,8 @@ export const loginUser = (user) => (dispatch) => {
 //TODO ADDRESS ENDPOINT AND WHAT TO SEND BACK!
 export const logoutUser = (user) => (dispatch) => {
     dispatch({ type: LOAD_USER })
-    axios
-        .post(API_URL, { user })
+    axiosWithAuth()
+        .post('auth/login', { user })
         .then((res) => {
             dispatch({ type: LOGOUT_USER })
         })

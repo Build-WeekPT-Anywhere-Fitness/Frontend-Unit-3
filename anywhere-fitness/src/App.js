@@ -11,7 +11,12 @@ function App() {
     <Router>
       <div className="App">
         <nav className="nav-links">
-         
+         <Link to="/login">Login</Link>
+         <br />
+         <Link to="/userdashboard">user dashboard</Link>
+         <br/>
+         <Link to="/instructordashboard">instructor dashboard</Link>
+
         </nav>
 
         <Switch>
