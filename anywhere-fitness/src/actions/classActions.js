@@ -17,8 +17,12 @@ export const fetchClasses = () => (dispatch) => {
         .get(`auth/users/classes`)
         .then((res) => {
             dispatch({ type: FETCH_CLASSES, payload: res.data })
+            console.log(`axios request good`,res)
         })
-        .catch((err) => dispatch({ type: CLASS_FAIL, payload: err }))
+        .catch((err) => dispatch({ type: CLASS_FAIL, payload: err,  },console.err(`bad axios call`,err)
+            ))
+      
+        
 }
 export const updateClass = (lesson, data,id) => (dispatch) => {
     dispatch({ type: LOAD_CLASS })

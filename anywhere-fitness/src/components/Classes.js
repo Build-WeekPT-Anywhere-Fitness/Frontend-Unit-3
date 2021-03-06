@@ -2,14 +2,15 @@ import React,{useState} from "react";
 import {fetchClasses,deleteClass,updateClass} from "../actions/classActions";
 import {useParams,useHistory} from "react-router-dom";
 import ClassCard from "./ClassCard";
+import {connect} from "react-redux";
 
-const initialState =({
-    classes=[]
-})
+// const initialState =({
+//     classes=[]
+// })
 
 
 function Classes({addToEnrolledClasses}){
-    const [fitclass, setFitClass] = useState(initialState);
+    const [fitclass, setFitClass] = useState([]);
 
     const params = useParams();
     const { id } = useParams();
@@ -30,7 +31,7 @@ function Classes({addToEnrolledClasses}){
 
         return(
             <div className="save-wrapper">
-                <ClassCard fitclass={fitclass} enrolledClass={enrolledClass}/>
+                <ClassCard classes={fitclass} enrolledClass={enrolledClass}/>
                 <div className="save-button" onClick={enrolledClass}>
                 Enroll
             </div>
@@ -45,3 +46,9 @@ function Classes({addToEnrolledClasses}){
             </div>
         )
 }
+const mapStateToProps = (state) => {
+    return {
+        classes:state.classes,
+    }
+}
+export default Classes
