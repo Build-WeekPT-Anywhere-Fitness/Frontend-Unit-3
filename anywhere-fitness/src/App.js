@@ -1,18 +1,16 @@
 
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import './App.css';
-<<<<<<< HEAD
 import InstructorDashboard from "./components/InstructorDashboard";
 import UserDashboard from "./components/UserDashboard"
 import Signup from "./Forms/SignUpForm";
-import Login from "./Forms/Login";
 import PrivateRoute from "./components/PrivateRoute";
+import LoginForm from "./Forms/LoginForm";
 function App() {
   return (
     <Router>
       <div className="App">
         <nav className="nav-links">
-         <Link to="/">Login</Link>
+         <Link to="/login">Login</Link>
          <br />
          <Link to="/userdashboard">user dashboard</Link>
          <br/>
@@ -23,10 +21,10 @@ function App() {
         </nav>
 
         <Switch>
-          <Route exact path="/userdashboard" component={UserDashboard} />
+          <PrivateRoute exact path="/userdashboard" component={UserDashboard} />
           <Route exact path="/instructordashboard" component={InstructorDashboard} />
 
-          <Route exact path ="/" component={Login} />
+          <Route exact path ="/login" component={LoginForm} />
           <Route exact path ="/signup" component={Signup} />
 
 
@@ -38,19 +36,4 @@ function App() {
 
   )
 }
-=======
-import SignUpForm from './components/Forms/SignUp';
-import Login from './login'
-
-function App() {
-  return (
-    <div className="App">
-      <SignUpForm />
-      <Login /> 
-    </div>
-  );
-}
-
-
->>>>>>> main
 export default App;

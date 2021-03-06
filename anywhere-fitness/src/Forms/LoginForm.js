@@ -1,7 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import FormSchema from './validation';
-import {Form, Input, Label} from './styling';
-import Axios from 'axios';
+import FormSchema from '../validation';
+import {Form, Input, Label} from '../styling';
+import {userLogin} from "../actions/userActions"
+import { connect } from 'react-redux'
+
+
 import * as yup from 'yup';
 //Initial State 
 const StateInfo = {
@@ -16,7 +19,7 @@ const ErrorInfo = {
   instructor: ''
 }
 //State
-function Login() {
+function LoginForm() {
   const [infoState, setInfoState] = useState({StateInfo});
   const [errors, setErrors] = useState({ErrorInfo});
   const [disabledButton, setDisabledButton] = useState();
@@ -29,6 +32,7 @@ function Login() {
         setDisabledButton(!valid);
       })
   }, [infoState])
+ 
 
   const inputChange = e => {
     e.persist();
@@ -53,18 +57,13 @@ function Login() {
   }
   //Submit button POST request
   const formSubmit = e => {
-    e.preventDefault();
-    Axios.post("https://anytime-fitness.herokuapp.com/api/auth/login", infoState)
-    .then(response => {
-      setUser(response.data);
-      setInfoState({
-        username: '',
-        password: '',
-      })
-    })
-    .catch(error => {
-      console.log(error.response)
-    })
+    e.preventDefault()
+        userLogin(user)
+        setUser({
+            username:"",
+            password:"",
+        })
+        
   }
   //Form layout
   return (
@@ -102,5 +101,8 @@ function Login() {
       <div>{errors.password}</div>
     </Form>
   )}
+  const mapStateToProps = (state) => {
+    return state
+}
 
-export default Login;
+export default connect(mapStateToProps,{userLogin})(LoginForm);

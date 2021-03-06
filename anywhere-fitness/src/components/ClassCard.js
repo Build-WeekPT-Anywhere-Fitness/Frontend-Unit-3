@@ -8,7 +8,7 @@ const ClassCard = (props) =>{
   
     return(
         <div className="class-card">
-            <h1>{props.type}</h1>
+            <h1>{props.createFitClass.type}</h1>
 
             <div className="class-intensity">
                 Intensity:<h2>{props.intensity}</h2>

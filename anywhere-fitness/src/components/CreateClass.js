@@ -2,9 +2,9 @@ import React, {useState,useEffect} from "react";
 import {connect} from "react-redux";
 import {axiosWithAuth} from "../utils/axiosWithAuth";
 import { useParams, useHistory } from "react-router-dom"
-import {updateClass} from "../actions/classActions"
+import {updateClass,createClass} from "../actions/userActions"
 import {allClassesUser} from "../actions/userActions"
-
+import ClassCard from "./ClassCard"
 const initialState = () =>({
     intensity:"",
     duration:"",
@@ -14,7 +14,7 @@ const initialState = () =>({
 })
 
 const CreateClass = (props) =>{
-    const [createClass, setCreateClass]=useState(initialState)
+    const [createFitClass, setCreateFitClass]=useState(initialState)
    
 
 
@@ -23,7 +23,7 @@ const CreateClass = (props) =>{
         .get('auth/instructor/classes')
         .then((res) =>{
             console.log("Editclass: axios call good",res)
-            props.setCreateClass(res.data)
+            props.setCreateFitClass(res.data)
         })
         .catch((err) =>{
             console.error("edit class: axios call bad",err)
@@ -36,22 +36,21 @@ const CreateClass = (props) =>{
 
     const handleSubmit = (e) =>{
         e.preventDefault();
-        console.log(e)
-        axiosWithAuth()
-        .put(`auth/instructor/classes${createClass.id}`,createClass)
-        .then((res) =>{
-            console.log("handleSubmit:axios success ")
-            editClass();
-        })
-        .catch((err) =>{
-            console.error("error unable to update class ${id} ",err)
-        })
+       createClass();
+       setCreateFitClass({
+        intensity:"",
+        duration:"",
+        location:"",
+        date:"",
+        time:"",
+       })
+       console.log("class created",createFitClass)
     }
 
     const handleChange = (e) =>{
         e.preventDefault();
-        setCreateClass({
-            ...createClass,
+        setCreateFitClass({
+            ...createFitClass,
             [e.target.name]: e.target.value
         })
     }
@@ -63,44 +62,52 @@ const CreateClass = (props) =>{
                 <input 
                 type="text"
                 name="intensity"
-                value={createClass.intensity}
-                placeholder="Intensity"
+                value={createFitClass.intensity}
+                placeholder="Intensity example:1-5"
                 onChange={handleChange}
                 />
                 <input 
                 type="text"
                 name="duration"
-                value={createClass.duration}
+                value={createFitClass.duration}
                 placeholder="Duration"
                 onChange={handleChange}
                 />
                 <input 
                 type="text"
                 name="location"
-                value={createClass.location}
+                value={createFitClass.location}
                 placeholder="Location"
                 onChange={handleChange}
                 />
                 <input 
                 type="text"
                 name="date"
-                value={createClass.date}
+                value={createFitClass.date}
                 placeholder="Date"
                 onChange={handleChange}
                 />
                 <input 
                 type="text"
                 name="time"
-                value={createClass.time}
+                value={createFitClass.time}
                 placeholder="Time"
                 onChange={handleChange}
                 />
             </form>
             <button className="update-button" onClick={handleSubmit} >
-        Save Edit
+        Create Classs
       </button>
+      <ClassCard classes={createFitClass} />
         </div>
     )
 }
-
-export default CreateClass
+const mapStateToProps = state => {
+    return (
+        state
+    )
+  };
+export default connect(
+    mapStateToProps,
+    { createClass }
+  ) (CreateClass)

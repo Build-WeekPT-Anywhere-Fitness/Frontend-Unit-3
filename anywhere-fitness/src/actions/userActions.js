@@ -1,5 +1,4 @@
 import {axiosWithAuth} from '../utils/axiosWithAuth'
-
 // import cookie from "react-cookie"
 
 ///REGISTER USER
@@ -163,9 +162,12 @@ export const userLogin = credentials => dispatch => {
       dispatch({
         type: USER_LOGIN_SUCCESS,
         payload: res.data.user
+        
       });
+      
       return true;
     })
+    
     .catch(err => {
       dispatch({
         type: USER_LOGIN_FAILURE,

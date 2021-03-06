@@ -51,4 +51,4 @@ const mapStateToProps = (state) => {
         classes:state.classes,
     }
 }
-export default Classes
+export default connect(mapStateToProps,null)(Classes)
