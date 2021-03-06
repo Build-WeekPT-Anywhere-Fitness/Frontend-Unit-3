@@ -1,27 +1,38 @@
 import React,{useEffect,useState} from "react";
-import {fetchClasses} from "../actions/classActions"
-import { axiosWithAuth } from "../utils/axiosWithAuth";
+import {allClassesUser} from "../actions/userActions"
+import {connect} from "react-redux";
+import CreateClass from "./CreateClass"
 import ClassCard from "./ClassCard"
-const UserDashboard = () =>{
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-    const [fitclasses, setFitClasses]=useState([])
+
+const UserDashboard = (props) =>{
+
         useEffect(() =>{
-            fetchClasses()
+            allClassesUser()
         },[])
      
-        const fetchClasses = () =>{
-            axiosWithAuth()
-            .get(`auth/users/classes`)
-            .then((res) =>{
-                setFitClasses(res.data)
-            })
-            .catch((err) => console.log(`err,"error getting classes"`))
-        }
+     
+       
     return(
         <div className="class-card">
             <ClassCard />
+           {props.classes.map(fitclass =>{
+               return(
+                   <ClassCard
+                   key={fitclass.id}
+                   classes={fitclass}
+                   />
+               )
+           })}
           
         </div>
     )
 }
-export default UserDashboard;
+const mapStateToProps = (state) => {
+    return {
+        classes:state.dashboardReducer.classes,
+        error:state.dashboardReducer.error
+    }
+}
+export default connect(mapStateToProps,{allClassesUser}) (UserDashboard);

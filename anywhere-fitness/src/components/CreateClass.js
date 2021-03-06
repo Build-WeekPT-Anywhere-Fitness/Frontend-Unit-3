@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {axiosWithAuth} from "../utils/axiosWithAuth";
 import { useParams, useHistory } from "react-router-dom"
 import {updateClass} from "../actions/classActions"
-import {fetchClasses} from "../actions/classActions"
+import {allClassesUser} from "../actions/userActions"
 
 const initialState = () =>({
     intensity:"",
@@ -31,7 +31,7 @@ const CreateClass = (props) =>{
     }
 
     useEffect(() =>{
-        fetchClasses()
+        allClassesUser()
     },[])
 
     const handleSubmit = (e) =>{

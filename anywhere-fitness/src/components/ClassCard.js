@@ -4,39 +4,28 @@ import {connect} from "react-redux";
 
 
 
-const ClassCard = (props,classes) =>{
-    // const {type,duration,location,date,time,enrolledClass,intensity} = props.fitclass
-    // const classRegistration = (e) =>{
-    //     e.preventDefault();
-    //     axiosWithAuth()
-    //     .post("",classes)
-    //     .then((res) =>{
-    //         console.log(res, "class registration succesful")
-
-    //     })
-    //     .catch((err) =>console.log(err,"error registering for class"))
-    // }
-
+const ClassCard = (props) =>{
+  
     return(
         <div className="class-card">
-            <h1>{classes.type}</h1>
+            <h1>{props.type}</h1>
 
             <div className="class-intensity">
-                Intensity:<h2>{classes.intensity}</h2>
+                Intensity:<h2>{props.intensity}</h2>
             </div>
             <div className="class-duration">
-                Duration:<h2>{classes.duration}</h2>
+                Duration:<h2>{props.duration}</h2>
             </div>
             <div className="class-location">
-                Location:<h3>{classes.location}</h3>
+                Location:<h3>{props.location}</h3>
             </div>
             <div className="class-date">
-                Date:<h3>{classes.date}</h3>
+                Date:<h3>{props.date}</h3>
             </div>
             <div className="class-time">
-                Time:<h3>{classes.time}</h3>
+                Time:<h3>{props.time}</h3>
             </div>
-            <button onClick={classes.enrolledClass}>Register</button>
+            <button onClick={props.enrolledClass}>Register</button>
         </div>
         
     );

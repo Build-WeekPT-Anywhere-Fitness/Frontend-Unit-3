@@ -1,6 +1,6 @@
 import React,{useState} from "react";
 import {useHistory} from "react-router-dom"
-import {loginUser} from "../actions/userActions"
+import {userLogin} from "../actions/userActions"
 import { connect } from 'react-redux'
 
 const initialState = ({
@@ -23,7 +23,7 @@ const Login = () =>{
 
     const handleSubmit = (e) =>{
         e.preventDefault()
-        loginUser(user)
+        userLogin(user)
         setUser({
             username:"",
             password:"",
@@ -58,4 +58,4 @@ const mapStateToProps = (state) => {
     return state
 }
 
-export default connect(mapStateToProps, {loginUser})(Login);
+export default connect(mapStateToProps, {userLogin})(Login);

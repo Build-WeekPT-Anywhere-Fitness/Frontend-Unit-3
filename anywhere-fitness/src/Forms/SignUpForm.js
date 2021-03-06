@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import * as yup from 'yup'
 import axios from 'axios'
 import { Container, Form, Label, Input } from './styles'
-import { createUser } from '../actions/userActions'
+import { registerUser } from '../actions/userActions'
 const SignUpForm = () => {
     //FORM STATE
     const [formState, setFormState] = useState({
@@ -85,7 +85,7 @@ const SignUpForm = () => {
 
     const formSubmit = (event) => {
         event.preventDefault()
-        createUser(formState)
+        registerUser(formState)
         setFormState({
             firstname: '',
             lastname: '',
@@ -201,5 +201,5 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {
-    createUser
+    registerUser
 })(SignUpForm)

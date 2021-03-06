@@ -10,10 +10,11 @@ import classReducer from './redux/classReducer'
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
+import logger from "redux-logger";
+import rootReducer from "./redux"
 
-const rootReducer = combineReducers({ userReducer, classReducer })
 
-const store = createStore(rootReducer, applyMiddleware(thunk))
+const store = createStore(rootReducer, applyMiddleware(thunk,logger))
 
 ReactDOM.render(
     <React.StrictMode>
