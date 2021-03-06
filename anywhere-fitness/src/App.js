@@ -1,6 +1,7 @@
 
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import './App.css';
+<<<<<<< HEAD
 import InstructorDashboard from "./components/InstructorDashboard";
 import UserDashboard from "./components/UserDashboard"
 import Signup from "./Forms/SignUpForm";
@@ -37,4 +38,19 @@ function App() {
 
   )
 }
+=======
+import SignUpForm from './components/Forms/SignUp';
+import Login from './login'
+
+function App() {
+  return (
+    <div className="App">
+      <SignUpForm />
+      <Login /> 
+    </div>
+  );
+}
+
+
+>>>>>>> main
 export default App;
