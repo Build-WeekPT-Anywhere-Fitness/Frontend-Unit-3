@@ -4,6 +4,14 @@ import * as yup from 'yup'
 import axios from 'axios'
 import { Container, Form, Label, Input } from './styles'
 import { createUser } from '../../actions/userActions'
+
+import { Link } from 'react-router-dom';
+import logo from '../../images/logo3.png';
+import { FcGoogle } from 'react-icons/fc';
+import { FcFeedback } from 'react-icons/fc';
+import { FcServices } from 'react-icons/fc';
+import { motion } from 'framer-motion';
+
 const SignUpForm = () => {
     //FORM STATE
     const [formState, setFormState] = useState({
@@ -53,7 +61,7 @@ const SignUpForm = () => {
             console.log('valid?', valid)
             setButtonDisabled(!valid)
         })
-    }, [formState])
+    }, [formState, formSchema])
 
     // INPUT CHANGE FUNCTION
     const inputChange = (event) => {
@@ -81,39 +89,73 @@ const SignUpForm = () => {
             })
     }
 
-    //FORM SUBMIT
-
     const formSubmit = (event) => {
-        event.preventDefault()
-        createUser(formState)
-        setFormState({
-            firstname: '',
-            lastname: '',
-            email: '',
-            username: '',
-            password: '',
-            role: ''
-        })
-    }
+        event.preventDefault();
+        axios
+          .post(
+            "https://anytime-fitness.herokuapp.com/api/auth/register",
+            formState
+          )
+          .then((response) => {
+            setUsers(response.data);
+            console.log(response);
+            setFormState({
+              firstname: "",
+              lastname: "",
+              email: "",
+              username: "",
+              password: "",
+              role: "",
+            });
+          })
+          .catch((error) => console.log(error.response));
+      };
 
     return (
         <Container>
+            <div className="hero-banner"> 
+                <div className="content">
+                    <Link to='/'>
+                        <motion.img 
+                            whileHover={{ rotateZ: 360 }}
+                            transition={{ 
+                            ease: "easeIn", 
+                            duration: 0.7
+                            }}
+                            src={logo} 
+                            alt="logo"
+                            />
+                    </Link>
+                    <h1>Hello and welcome,</h1>
+                    <p>join the community to find the best fitness classes near you!</p>
+                    <h3>Already a member?</h3>
+                    <Link to='/login'>
+                        <button>Log in</button> 
+                    </Link>
+                </div>
+            </div>
             <Form onSubmit={formSubmit}>
-                <h2 className="sign-up">Sign Up Today!</h2>
-                <div>
-                    <Label htmlFor="firstname">
-                        <Input
-                            type="text"
-                            name="firstname"
-                            placeholder="First Name"
-                            value={formState.firstname}
-                            onChange={inputChange}
-                        />
+                <div className="icons">
+                    <h2>Create an account</h2>
+                    <FcGoogle size={32}/>
+                    <FcFeedback size={32}/>
+                    <FcServices size={32}/>
+                </div>
 
-                        {errors.firstname.length > 0 ? (
+                <div>
+                <Label htmlFor="firstname">
+                    <Input
+                        type="text"
+                        name="firstname"
+                        placeholder="First Name"
+                        value={formState.firstname}
+                        onChange={inputChange}
+                    />
+
+                    {errors.firstname.length > 0 ? (
                             <p>{errors.firstname}</p>
                         ) : null}
-                    </Label>
+                </Label>
                 </div>
 
                 <div>
@@ -175,7 +217,7 @@ const SignUpForm = () => {
                     </Label>
                 </div>
 
-                <div>
+                <div className="role">
                     <Label htmlFor="role">
                         Instructor
                         <Input
@@ -189,9 +231,18 @@ const SignUpForm = () => {
 
                 {JSON.stringify(users, null, 2)}
 
-                <button disabled={buttonDisabled} type="submit">
+                <motion.button 
+                    whileHover={{ 
+                        scale: 1.1,
+                        transition: { duration: 0.8 },
+                        color: 'white',
+                        backgroundColor: '#18DCBF'
+                    }}
+                    whileTap={{ scale: 0.3 }}
+                    disabled={buttonDisabled} 
+                    type="submit">
                     Sign Up!
-                </button>
+                </motion.button>
             </Form>
         </Container>
     )
